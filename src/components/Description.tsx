@@ -28,7 +28,7 @@ export const Description = () => {
     <Box mt="2rem">
       <Flex
         direction="row"
-        justifyContent={{ base: "flex-start", md: "space-between" }}
+        justifyContent={{ base: "flex-start", md: "flex-start" }}
         gap="1.5rem"
         ml={{ base: "-1rem", md: "2.2rem" }}
         mx={{ base: "-1rem", md: "2.2rem" }}
