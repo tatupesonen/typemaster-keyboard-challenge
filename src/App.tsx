@@ -38,7 +38,7 @@ function App() {
     },
   ];
   return (
-    <Box className="App" maxW="1110px" mx="auto">
+    <Box overflow={{ base: "hidden", md: "hidden", xl: "unset" }} className="App" maxW="1110px" mx="auto">
       <TopBar />
       {/* Hero */}
       <Hero />
