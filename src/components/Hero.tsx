@@ -34,7 +34,14 @@ export const Hero = () => {
             experience.
           </Text>
           <Flex direction="row" alignItems="center">
-            <Button color="white" bgColor="brand.orange" textTransform="uppercase">
+            <Button
+              color="white"
+              bgColor="brand.orange"
+              _hover={{
+                backgroundColor: "brand.lightOrange",
+              }}
+              textTransform="uppercase"
+            >
               pre-order now
             </Button>
             <Text fontWeight="semibold" ml="1.5rem" textTransform="uppercase" color="brand.darkGray" lineHeight="26px">
