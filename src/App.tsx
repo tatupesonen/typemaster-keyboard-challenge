@@ -1,4 +1,17 @@
-import { Box, Image, Text, Heading, Stack, Button, Flex, Center, SimpleGrid, Divider } from "@chakra-ui/react";
+import {
+  Box,
+  Image,
+  Text,
+  Heading,
+  Stack,
+  Button,
+  Flex,
+  Center,
+  SimpleGrid,
+  Divider,
+  Fade,
+  SlideFade,
+} from "@chakra-ui/react";
 import { TopBar } from "./components/TopBar";
 import { Hero } from "./components/Hero";
 import orangeKb from "../assets/mobile/image-phone-and-keyboard.jpg";
@@ -10,8 +23,23 @@ import CompatibleIcon from "../assets/shared/icon-compatible.svg";
 import LightIcon from "../assets/shared/icon-light.svg";
 import { Footer } from "./components/Footer";
 import { Description } from "./components/Description";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [heroFade, setHeroFade] = useState(false);
+  const [cardsFade, setCardsFade] = useState(false);
+  const [mechFade, setMechFade] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => setHeroFade(true), 200);
+    const mechTimeout = setTimeout(() => setMechFade(true), 600);
+    const cardsTimeout = setTimeout(() => setCardsFade(true), 1000);
+
+    () => {
+      clearTimeout(timeout);
+      clearTimeout(cardsTimeout);
+      clearTimeout(mechTimeout);
+    };
+  });
   const features: FeatureProps[] = [
     {
       heading: "highly compatible",
@@ -41,15 +69,21 @@ function App() {
     <Box overflow={{ base: "hidden", md: "hidden", xl: "unset" }} className="App" maxW="1110px" mx="auto">
       <TopBar />
       {/* Hero */}
-      <Hero />
-      <Description />
-      <Box mx="2.2rem" mt="6rem">
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacingX="3rem" spacingY={{ base: "4rem", md: "5rem" }}>
-          {features.map((feat) => (
-            <Feature {...feat} />
-          ))}
-        </SimpleGrid>
-      </Box>
+      <SlideFade in={heroFade}>
+        <Hero />
+      </SlideFade>
+      <SlideFade in={mechFade}>
+        <Description />
+      </SlideFade>
+      <SlideFade in={cardsFade}>
+        <Box mx="2.2rem" mt="6rem">
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacingX="3rem" spacingY={{ base: "4rem", md: "5rem" }}>
+            {features.map((feat) => (
+              <Feature {...feat} />
+            ))}
+          </SimpleGrid>
+        </Box>
+      </SlideFade>
       <Footer />
     </Box>
   );
